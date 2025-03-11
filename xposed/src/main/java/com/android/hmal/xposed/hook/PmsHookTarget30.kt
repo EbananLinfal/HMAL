@@ -1,6 +1,6 @@
 package com.android.hmal.xposed.hook
 
-import android.annotation.TargetApi
+import androidx.annotation.RequiresApi
 import android.os.Build
 import com.github.kyuubiran.ezxhelper.utils.findMethod
 import com.github.kyuubiran.ezxhelper.utils.hookBefore
@@ -9,7 +9,7 @@ import com.android.hmal.common.Constants
 import com.android.hmal.xposed.*
 import java.util.concurrent.atomic.AtomicReference
 
-@TargetApi(Build.VERSION_CODES.R)
+@RequiresApi(Build.VERSION_CODES.R)
 class PmsHookTarget30(private val service: HMALService) : IFrameworkHook {
 
     companion object {

@@ -1,6 +1,6 @@
 package com.android.hmal.xposed.hook
 
-import android.annotation.TargetApi
+import androidx.annotation.RequiresApi
 import android.content.pm.ApplicationInfo
 import android.os.Build
 import com.github.kyuubiran.ezxhelper.utils.findMethod
@@ -8,8 +8,9 @@ import com.github.kyuubiran.ezxhelper.utils.hookBefore
 import de.robv.android.xposed.XC_MethodHook
 import com.android.hmal.common.CommonUtils
 import com.android.hmal.xposed.HMALService
+import com.android.hmal.xposed.Utils
 
-@TargetApi(Build.VERSION_CODES.S)
+@RequiresApi(Build.VERSION_CODES.R)
 class ZygoteArgsHook(private val service: HMALService) : IFrameworkHook {
 
     companion object {
@@ -29,7 +30,9 @@ class ZygoteArgsHook(private val service: HMALService) : IFrameworkHook {
                 val changeId = param.args[0] as Long
                 val appInfo = param.args[1] as ApplicationInfo
                 if (changeId.toInt() != 143937733) return@hookBefore
-                val apps = service.pms.getPackagesForUid(appInfo.uid) ?: return@hookBefore
+		val apps = Utils.binderLocalScope {
+                     service.pms.getPackagesForUid(appInfo.uid)
+                } ?: return@hookBefore
                 for (app in apps) {
                     if (service.isHookEnabled(app)) {
                         if (sAppDataIsolationEnabled) param.result = true

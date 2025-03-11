@@ -30,7 +30,9 @@ class AboutActivity : AbsAboutActivity() {
         items.add(Line())
         items.add(Contributor(R.drawable.cont_k, "Ketal", "Collaborator", "https://github.com/keta1"))
         items.add(Line())
-        items.add(Contributor(R.drawable.cont_icon_designer, "辉少菌", "Icon designer", "http://www.coolapk.com/u/1560270"))
+        items.add(Contributor(R.drawable.cont_aviraxp, "aviraxp", "Collaborator", "https://github.com/aviraxp"))
+        items.add(Line())
+	items.add(Contributor(R.drawable.cont_icon_designer, "辉少菌", "Icon designer", "http://www.coolapk.com/u/1560270"))
         items.add(Line())
         items.add(Contributor(R.drawable.cont_cpp_master, "LoveSy", "Idea provider", "https://github.com/yujincheng08"))
 
